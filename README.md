@@ -10,7 +10,7 @@ SpringBoot + SpringMVC + SpringDataJpa + MySql
 #### exception包：自定义报错
 #### handle包：捕捉错误
 #### model包：数据库映射实体
-#### repository包：数据库操作接口
+#### repository包：数据库操作接口（继承SpringDataJpa）
 #### service包：业务逻辑处理
 #### util包：工具包（目前只有统一返回构造）  
 
