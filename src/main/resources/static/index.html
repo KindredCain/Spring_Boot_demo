@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hello world
+<br>
+GET方法：
+<br>
+<table border="1">
+    <tr>
+        <td>/findall</td>
+        <td>查询全部</td>
+    </tr>
+    <tr>
+        <td>/find/{id}</td>
+        <td>查询指定id</td>
+    </tr>
+</table>
+<br>
+<form action="login.do" method="post">
+    name <input type="text" name="name"></input><br>
+    pwd <input type="text" name="pwd"></input><br>
+    <input type="submit" name="submit" value="login"></input>
+</form>
+<br>
+<form action="add.do" method="post">
+    name <input type="text" name="name"></input><br>
+    pwd <input type="text" name="pwd"></input><br>
+    <input type="submit" name="submit" value="add"></input>
+</form>
+<br>
+<form action="model.do" method="post">
+    id <input type="text" name="id"></input><br>
+    name <input type="text" name="name"></input><br>
+    pwd <input type="text" name="pwd"></input><br>
+    <input type="submit" name="submit" value="model"></input>
+</form>
+<br>
+<form action="delete.do" method="post">
+    id <input type="text" name="id"></input><br>
+    <input type="submit" name="submit" value="delete"></input>
+</form>
+<br>
+<form action="findbyname.do" method="post">
+    name <input type="text" name="name"></input><br>
+    <input type="submit" name="submit" value="findByName"></input>
+</form>
+<br>
+<form action="logout.do" method="post">
+    <input type="submit" name="submit" value="logout"></input>
+</form>
+</body>
+</html>
