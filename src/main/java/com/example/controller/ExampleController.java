@@ -17,8 +17,8 @@ public class ExampleController {
     @Autowired
     private ExampleService exampleService;
 
-    @PostMapping(value = "/model")
-    public Result model(Example example) throws Exception {
+    @PostMapping(value = "/modify")
+    public Result modify(Example example) throws Exception {
         exampleService.update(example);
         return Result.success();
     }
@@ -42,6 +42,21 @@ public class ExampleController {
     public Result delete(Example example) {
         exampleService.delete(example);
         return Result.success();
+    }
+
+    @PostMapping(value = "/findbypwdis")
+    public Result findByPwdIs() {
+        return Result.success(exampleService.findByPwdIs());
+    }
+
+    @PostMapping(value = "/findbypwdname")
+    public Result findByPwdName(Example example) {
+        return Result.success(exampleService.findByPwdName(example.getPwd()));
+    }
+
+    @PostMapping(value = "/findbynamepwd")
+    public Result findByNamePwd(Example example) {
+        return Result.success(exampleService.findByNamePwd(example.getName()));
     }
 
     @PostMapping(value = "/logout")

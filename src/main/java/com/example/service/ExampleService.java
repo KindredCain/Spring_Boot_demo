@@ -51,6 +51,18 @@ public class ExampleService {
         return exampleRepository.findOne(id);
     }
 
+    public List<Example> findByPwdIs() {
+        return exampleRepository.findByPwdIs();
+    }
+
+    public List<Example> findByPwdName(String pwd) {
+        return exampleRepository.findByPwdName(pwd);
+    }
+
+    public List<Example> findByNamePwd(String name) {
+        return exampleRepository.findByNamePwd(name);
+    }
+
     /*事务处理*/
     @Transactional
     public void addTwo(Example e1, Example e2) {
