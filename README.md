@@ -29,3 +29,21 @@ test下为单元测试，暂时没写，将来补充
 application.yml：配置文件  
 application-dev.yml：开发用配置  
 application-prod.yml：部署用配置  
+
+***  
+#### 附上服务器部署方法及后台持续运行启动结束脚本
+1：`mvn spring-boot:run`  
+2：`mvn install`编译jar，然后运行jar   
+启动shell：  
+`#!/bin/bash`  
+`nohup java -jar name.jar &`   
+结束shell：   
+`#!/bin/bash`  
+`PID=$(ps -ef | grep name.jar | grep -v grep | awk '{ print $2 }')`  
+`if [ -z "$PID" ]`  
+`then`  
+`    echo Application is already stopped`  
+`else`  
+`    echo kill $PID`  
+`    kill $PID`  
+`fi`  
