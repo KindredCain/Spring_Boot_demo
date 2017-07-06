@@ -2,6 +2,8 @@ package com.example.repository;
 
 import com.example.model.Example;
 import com.example.model.IndexObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -37,4 +39,8 @@ public interface ExampleRepository extends JpaRepository<Example, String>, JpaSp
             "FROM Example a, Example b " +
             "WHERE a.pwd = b.pwd AND a.pwd = ?1")
     List<IndexObject> findBySamePwd(String pwd);
+
+    /*分页排序查询
+    * 排序用 List<> name(?, Sort sort); */
+    Page<Example> findByPwd(String pwd, Pageable pageable);
 }

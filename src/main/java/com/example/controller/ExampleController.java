@@ -79,6 +79,13 @@ public class ExampleController {
         return Result.success(exampleService.search(example));
     }
 
+    @PostMapping(value = "/examplepage")
+    public Result examplePage(@RequestParam String pwd,
+                              @RequestParam(defaultValue = "1") String page,
+                              @RequestParam(defaultValue = "3") String pageSize) {
+        return Result.success(exampleService.examplePage(pwd, Integer.valueOf(page) - 1, Integer.valueOf(pageSize)));
+    }
+
     @PostMapping(value = "/logout")
     public Result logout(HttpSession session) {
         session.invalidate();

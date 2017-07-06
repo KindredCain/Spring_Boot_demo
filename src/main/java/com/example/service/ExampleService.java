@@ -7,7 +7,9 @@ import com.example.model.IndexObject;
 import com.example.repository.ExampleDao;
 import com.example.repository.ExampleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -115,5 +117,14 @@ public class ExampleService {
                 return cb.and(list.toArray(p));
             }
         });
+    }
+
+    /*分页排序查询
+    * 可单独使用分页或排序（排序改成List<>）
+    * Page<>或许具体数据为"content":*/
+    public Page<Example> examplePage (String pwd, Integer page, Integer pageSize){
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.ASC,"createTime"),
+                new Sort.Order(Sort.Direction.DESC,"updateTime"));
+        return exampleRepository.findByPwd(pwd, new PageRequest(page, pageSize, sort));
     }
 }
