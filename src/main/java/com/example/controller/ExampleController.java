@@ -59,6 +59,26 @@ public class ExampleController {
         return Result.success(exampleService.findByNamePwd(example.getName()));
     }
 
+    @PostMapping(value = "/findsame")
+    public Result findSame() {
+        return Result.success(exampleService.findSame());
+    }
+
+    @PostMapping(value = "/findsamebydao")
+    public Result findSameByDao() {
+        return Result.success(exampleService.findSameByDao());
+    }
+
+    @PostMapping(value = "/findsamepwd")
+    public Result findSamePwd(Example example) {
+        return Result.success(exampleService.findSamePwd(example.getPwd()));
+    }
+
+    @PostMapping(value = "/search")
+    public Result search(Example example) {
+        return Result.success(exampleService.search(example));
+    }
+
     @PostMapping(value = "/logout")
     public Result logout(HttpSession session) {
         session.invalidate();

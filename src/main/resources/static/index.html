@@ -63,6 +63,25 @@ GET方法：
     <input type="submit" name="submit" value="查询密码是123且名字是"></input>
 </form>
 <br>
+<form action="findsamepwd.do" method="post">
+    name <input type="text" name="pwd"></input><br>
+    <input type="submit" name="submit" value="查询密码一样的账号"></input>
+</form>
+<br>
+<form action="findsame.do" method="post">
+    <input type="submit" name="submit" value="查询密码一样的账号"></input>
+</form>
+<br>
+<form action="findsamebydao.do" method="post">
+    <input type="submit" name="submit" value="DAO查询密码一样的账号"></input>
+</form>
+<br>
+<form action="search.do" method="post">
+    name <input type="text" name="name"></input><br>
+    pwd <input type="text" name="pwd"></input><br>
+    <input type="submit" name="submit" value="查询"></input>
+</form>
+<br>
 <form action="logout.do" method="post">
     <input type="submit" name="submit" value="logout"></input>
 </form>

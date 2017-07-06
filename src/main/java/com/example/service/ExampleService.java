@@ -3,11 +3,21 @@ package com.example.service;
 import com.example.enums.ResultEnum;
 import com.example.exception.ExampleException;
 import com.example.model.Example;
+import com.example.model.IndexObject;
+import com.example.repository.ExampleDao;
 import com.example.repository.ExampleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +29,8 @@ public class ExampleService {
 
     @Autowired
     private ExampleRepository exampleRepository;
+    @Autowired
+    private ExampleDao exampleDao;
 
     public void add(Example example) {
         exampleRepository.save(example);
@@ -68,5 +80,40 @@ public class ExampleService {
     public void addTwo(Example e1, Example e2) {
         exampleRepository.save(e1);
         exampleRepository.save(e2);
+    }
+
+    /*List<Object[]>存储多表查询结果*/
+    public List<Object[]> findSame() {
+        return exampleRepository.findSame();
+    }
+
+    /*自己编辑Dao实现类*/
+    public List<Object[]> findSameByDao() {
+        return exampleDao.findSame();
+    }
+
+    /*自定义类存储查询*/
+    public List<IndexObject> findSamePwd(String pwd) {
+        return exampleRepository.findBySamePwd(pwd);
+    }
+
+    /*自定义动态查询*/
+    public List<Example> search (Example example) {
+        return exampleRepository.findAll(new Specification<Example>(){
+            @Override
+            public Predicate toPredicate(Root<Example> root, CriteriaQuery<?> query, CriteriaBuilder cb){
+                List<Predicate> list = new ArrayList<Predicate>();
+                if(example != null && !example.getName().equals("") ){
+                    list.add(cb.like(root.get("name"), "%" + example.getName() + "%"));
+                }
+
+                if(example != null && !example.getPwd().equals("") ){
+                    list.add(cb.equal(root.<String> get("pwd"), example.getPwd()));
+                }
+
+                Predicate[] p = new Predicate[list.size()];
+                return cb.and(list.toArray(p));
+            }
+        });
     }
 }
